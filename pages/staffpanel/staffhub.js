@@ -1,4 +1,6 @@
 import Head from "next/head";
+import { useRouter } from "next/router";
+
 export const getStaticProps = async () => {
 
     const res = await fetch('https://jsonplaceholder.typicode.com/users');
@@ -10,6 +12,13 @@ export const getStaticProps = async () => {
 }
 
 const StaffHub = ({ cadets }) => {
+    const router = useRouter();
+
+    const handleClick = e => {
+        e.preventDefault()
+        router.push('/staffpanel/enrolledCadets')
+    }
+
     return ( 
         <>
         <Head>
@@ -17,19 +26,18 @@ const StaffHub = ({ cadets }) => {
         </Head>
         <div>
             <h1>Welcome to Staff Hub</h1>
-            {cadets.map(cadet => (
-                <div className="cadetnames">
-                    <div key={cadet.id}> 
-                        <a>
-                            <h3>CDT { cadet.name }</h3>
-                            <h4>Username: { cadet.username }</h4>
-                        </a>
-                    </div>
+                <div className="enrolledbox">
+                    <h2 className="enrolled">Enrolled Cadets: { cadets.length }</h2>
+                    <div className="action">
+                        <button class="button-81" type="button" onClick={handleClick}>View Cadets</button>
+                    </div>  
                 </div>
-            ))}
+                    
         </div>
         </>
      );
 }
  
 export default StaffHub;
+
+
