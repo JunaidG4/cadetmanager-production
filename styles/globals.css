@@ -176,7 +176,6 @@ footer {
   background: #fff;
   width: 22rem;
   margin: 5px 3rem;
-  display: -webkit-box;
   display: flex;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
@@ -196,7 +195,7 @@ footer {
 .button-81 {
   background-color: #fff;
   border: 0 solid #e2e8f0;
-  border-radius: 1.5rem;
+  border-radius: .5rem;
   box-sizing: border-box;
   color: #0d172a;
   cursor: pointer;
@@ -227,4 +226,19 @@ footer {
     font-size: 1.125rem;
     padding: 1rem 2rem;
   }
+}
+
+.addCadet {
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+.cadetNameContainer {
+
+  justify-content: center;
+}
+
+.goBackToStaff {
+  margin-left: 1rem;
 }

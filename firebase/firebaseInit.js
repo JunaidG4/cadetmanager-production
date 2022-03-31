@@ -24,6 +24,7 @@ const app = initializeApp(clientCredentials)
 
 export const db = getFirestore()
 export const colRef = collection(db, 'cadets')
+export const eventRef = collection(db, 'events')
 export const authGet = getAuth()
 
 export default function firebaseInit() {
