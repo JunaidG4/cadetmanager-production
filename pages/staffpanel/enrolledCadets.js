@@ -1,6 +1,8 @@
 import Head from "next/head";
 import ReadFirestore from "../../firebase/readFirestore";
-
+import { collection, setDoc, addDoc, onSnapshot, doc } from "firebase/firestore";
+import { db, colRef } from "../../firebase/firebaseInit";
+import { useEffect, useState } from "react";
 
 export const getStaticProps = async () => {
 
@@ -12,8 +14,35 @@ export const getStaticProps = async () => {
     }
 }
 
+export const getTheCadets = async () => {
 
-const enrolledCadets = ({ cadets }) => {
+    const[cadetsNames, setCadets] = useState([]);
+
+        useEffect(
+            () => 
+            onSnapshot(collection(db, "cadets"), (snapshot) =>
+                setCadets(snapshot.docs.map(doc => doc.data()))
+            )
+        ),
+    []
+
+    return {
+        cadetsNames
+    }
+
+}
+
+const enrolledCadets = ({cadets}) => {
+
+    const handleCadet = async () => {
+        const forename = prompt("Enter forename:")
+        const surname = prompt("Enter surname:")
+        const payload = {forename, surname};
+        const docRef = await addDoc(colRef, payload);
+        console.log("New ID is: " + docRef.id);
+    }
+
+
     return ( 
         <>
         <Head>
@@ -21,12 +50,13 @@ const enrolledCadets = ({ cadets }) => {
         </Head>
         <div>
         <ReadFirestore />
+        <button className="button" onClick={handleCadet}>Enroll Cadet</button>
         <form className="add" > 
         <label for="forename">Forename:</label>
         <input type="text" name="forename" required />
         <label label for="surname">Surname:</label>
         <input type="text" name="surname" required />
-        <button>Enroll Cadet</button>
+        <button className="button" onClick={handleCadet}>Enroll Cadet</button>
         </form>
 
             <h1>Enrolled Cadets</h1>
