@@ -1,5 +1,7 @@
+import { signInWithEmailAndPassword } from "firebase/auth";
 import Head from "next/head";
 import { useRouter } from "next/router";
+import { authGet } from "../../firebase/firebaseInit";
 
 
 
@@ -10,6 +12,7 @@ export default function StaffLogin() {
         e.preventDefault()
         router.push('/staffpanel/staffhub')
     }
+
     
     return ( 
         <>
@@ -19,7 +22,7 @@ export default function StaffLogin() {
             </Head>
             <div>
                 <div className="login-form">
-                    <form>
+                    <form className="login">
                         <h1>Staff Login Area</h1>
                         <div className="form-content">
                         <div className="input-field">

@@ -4,12 +4,15 @@ import Image from 'next/image';
 import Footer from '../Components/Footer';
 import Navbar from '../Components/Navbar';
 import styles from '../styles/Home.module.css';
-import firebase from '../firebase/initFirebase';
-import WriteToCloudFirestore from '../Components/cloudFirestore/Write';
+import firebase from '../firebase/firebaseInit';
+import readFirestore from '../firebase/readFirestore'
+import { useAuth } from '../context/authContext';
 
 firebase();
 
+
 export default function Home() {
+  const {currentUser} = useAuth()
   return (
     <>
       <Head>
@@ -17,7 +20,7 @@ export default function Home() {
       </Head>
       <div>
         <h1>Welcome to CMS</h1>
-        <WriteToCloudFirestore />
+        <text>The current user is: ${currentUser}</text>
         <p>
           Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has
           been the industry's standard dummy

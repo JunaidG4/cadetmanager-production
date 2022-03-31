@@ -29,7 +29,7 @@ const StaffHub = ({ cadets }) => {
                 <div className="enrolledbox">
                     <h2 className="enrolled">Enrolled Cadets: { cadets.length }</h2>
                     <div className="action">
-                        <button class="button-81" type="button" onClick={handleClick}>View Cadets</button>
+                        <button className="button-81" type="button" onClick={handleClick}>View Cadets</button>
                     </div>  
                 </div>
                     
