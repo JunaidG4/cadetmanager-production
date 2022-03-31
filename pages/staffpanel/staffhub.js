@@ -1,23 +1,27 @@
 import Head from "next/head";
 import { useRouter } from "next/router";
+import { db, colRef } from "../../firebase/firebaseInit";
+import { useEffect, useState } from "react";
+import { collection, setDoc, addDoc, onSnapshot, doc } from "firebase/firestore";
 
-export const getStaticProps = async () => {
 
-    const res = await fetch('https://jsonplaceholder.typicode.com/users');
-    const data = await res.json();
-
-    return {
-        props: { cadets: data }
-    }
-}
-
-const StaffHub = ({ cadets }) => {
+export default function StaffHub() {
     const router = useRouter();
 
     const handleClick = e => {
         e.preventDefault()
         router.push('/staffpanel/enrolledCadets')
     }
+
+    const [cadets, setCadets] = useState([{ forename: "Loading...", surname: "Loading..." }]);
+  
+    useEffect(
+      () =>
+        onSnapshot(collection(db, "cadets"), (snapshot) =>
+          setCadets(snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id })))
+        ),
+      []
+    );
 
     return ( 
         <>
@@ -38,6 +42,4 @@ const StaffHub = ({ cadets }) => {
      );
 }
  
-export default StaffHub;
-
 
