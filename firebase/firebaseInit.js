@@ -1,8 +1,13 @@
-import { initializeApp, getApps } from 'firebase/app';
+import { 
+  initializeApp, 
+  getApps 
+} from 'firebase/app';
+
 import { 
   collection, getFirestore, getDocs,
   addDoc 
 } from 'firebase/firestore';
+
 import {
   getAuth,
   signOut,
@@ -25,7 +30,7 @@ const app = initializeApp(clientCredentials)
 export const db = getFirestore()
 export const colRef = collection(db, 'cadets')
 export const eventRef = collection(db, 'events')
-export const authGet = getAuth()
+export const auth = getAuth(app)
 
 export default function firebaseInit() {
   if (!getApps().length) {

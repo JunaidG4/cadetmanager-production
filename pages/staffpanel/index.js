@@ -1,7 +1,13 @@
-import { signInWithEmailAndPassword } from "firebase/auth";
+import { 
+    signInWithEmailAndPassword,
+    createUserWithEmailAndPassword,
+    onAuthStateChanged,
+    signOut 
+} from "firebase/auth";
 import Head from "next/head";
 import { useRouter } from "next/router";
-import { authGet } from "../../firebase/firebaseInit";
+import { useState } from "react";
+import { auth } from "../../firebase/firebaseInit";
 
 
 
@@ -12,6 +18,34 @@ export default function StaffLogin() {
         e.preventDefault()
         router.push('/staffpanel/staffhub')
     }
+
+    const [user, setUser] = useState({});
+
+    onAuthStateChanged(auth, (currentUser) => {
+        setUser(currentUser);
+    });
+
+    const [signInEmail, setSignInEmail] = useState("")
+    const [signInPassword, setSignInPassword] = useState("")
+
+    const login = async () => {
+        try {
+            const user = await signInWithEmailAndPassword (
+                auth,
+                signInEmail,
+                signInPassword
+            );
+            console.log(user);
+        } catch (error) {
+            console.log(error.message);
+        }
+    }
+
+    
+
+    const logout = async () => {
+    await signOut(auth);
+    };
 
     
     return ( 
@@ -26,17 +60,21 @@ export default function StaffLogin() {
                         <h1>Staff Login Area</h1>
                         <div className="form-content">
                         <div className="input-field">
-                            <input type="email" placeholder="Email" autoComplete="nope" />
+                            <input type="email" placeholder="Email" autoComplete="nope" onChange={(event) => {setSignInEmail(event.target.value)}}/>
                         </div>
                         <div className="input-field">
-                            <input type="password" placeholder="Password" autoComplete="new-password" />
+                            <input type="password" placeholder="Password" autoComplete="new-password" onChange={(event) => {setSignInPassword(event.target.value)}}/>
                         </div>
-                        <a href="#" className="link">Forgot Your Password?</a>
                         </div>
                         <div className="action">
-                        <button type="button" onClick={handleClick}>Sign in</button>
+                        <button type="button" onClick={login}>Sign in</button>
                         </div>
                     </form>
+
+                        <h4> User Logged In: </h4>
+                        {user?.email}
+
+                         <button onClick={logout}> Sign Out </button>
                     </div>
             </div>
         </>

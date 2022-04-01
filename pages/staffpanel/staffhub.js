@@ -1,8 +1,11 @@
 import Head from "next/head";
 import { useRouter } from "next/router";
-import { db, colRef } from "../../firebase/firebaseInit";
+import { db, colRef, auth } from "../../firebase/firebaseInit";
 import { useEffect, useState } from "react";
 import { collection, setDoc, addDoc, onSnapshot, doc } from "firebase/firestore";
+import { 
+  createUserWithEmailAndPassword,
+} from "firebase/auth";
 
 
 export default function StaffHub() {
@@ -43,6 +46,22 @@ export default function StaffHub() {
       []
     );
 
+    const [registerEmail, setRegisterEmail] = useState("");
+    const [registerPassword, setRegisterPassword] = useState("");
+
+    const register = async () => {
+      try {
+        const user = await createUserWithEmailAndPassword(
+          auth,
+          registerEmail,
+          registerPassword
+        );
+        console.log(user);
+      } catch (error) {
+        console.log(error.message);
+      }
+  };
+
     return ( 
         <>
         <Head>
@@ -62,6 +81,25 @@ export default function StaffHub() {
                         <button className="button-81" type="button" onClick={handleEventsClick}>View Events</button>
                     </div>  
                 </div>
+              
+                <div className="login-form">
+                    <form className="login">
+                        <h1>Register New User</h1>
+                        <div className="form-content">
+                        <div className="input-field">
+                            <input type="email" placeholder="Email" autoComplete="nope" onChange={(event) => {setRegisterEmail(event.target.value)}}/>
+                        </div>
+                        <div className="input-field">
+                            <input type="password" placeholder="Password" autoComplete="new-password" onChange={(event) => {setRegisterPassword(event.target.value)}}/>
+                        </div>
+                        </div>
+                        <div className="action">
+                        <button type="button" onClick={register}>Register User</button>
+                        </div>
+                    </form>
+
+                        
+                    </div>
                     
         </div>
         </>

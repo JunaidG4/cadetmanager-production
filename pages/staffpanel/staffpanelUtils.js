@@ -11,7 +11,7 @@ export const handleCadet = async () => {
     const payload = {forename, surname, rank, enrolledDate};
     const docRef = await addDoc(colRef, payload);
     console.log("New ID is: " + docRef.id);
-  };
+};
 
 export const handleEvent = async () => {
     const eventname = prompt("Enter Event Name:")
@@ -21,4 +21,5 @@ export const handleEvent = async () => {
     const payload = {eventname, eventDate, uniform, isLive};
     const docRef = await addDoc(eventRef, payload);
     console.log("New ID is: " + docRef.id);
-    };
+};
+
