@@ -45,6 +45,7 @@ nav .cmstitle {
   padding-left: 2rem;
   margin-right: auto;
   color: white
+  
 }
 
 nav .logo {
@@ -241,4 +242,30 @@ footer {
 
 .goBackToStaff {
   margin-left: 1rem;
+}
+
+.welcomeTo {
+  display: flow-root;
+  background-color: #294764;
+  margin-top: -1rem;
+  color: white;
+  padding: 1rem;
+  max-width: 35rem;
+  border-radius: 0rem 1rem 1rem 0rem;
+  box-shadow: 0 2px 25px rgba(0, 0, 0, 0.3);
+}
+
+.links {
+  max-height: 3rem;
+}
+
+.loggedInStatus {
+  display: flex;
+  margin-bottom: 1rem;
+  float: right;
+}
+
+.loggedin {
+  padding-right: .2rem;
+  color: white;
 }

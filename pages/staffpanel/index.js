@@ -60,21 +60,16 @@ export default function StaffLogin() {
                         <h1>Staff Login Area</h1>
                         <div className="form-content">
                         <div className="input-field">
-                            <input type="email" placeholder="Email" autoComplete="nope" onChange={(event) => {setSignInEmail(event.target.value)}}/>
+                            <input type="email" required placeholder="Email" autoComplete="nope"  onChange={(event) => {setSignInEmail(event.target.value)}}/>
                         </div>
                         <div className="input-field">
-                            <input type="password" placeholder="Password" autoComplete="new-password" onChange={(event) => {setSignInPassword(event.target.value)}}/>
+                            <input type="password" required placeholder="Password" autoComplete="new-password"  onChange={(event) => {setSignInPassword(event.target.value)}}/>
                         </div>
                         </div>
                         <div className="action">
-                        <button type="button" onClick={login}>Sign in</button>
+                        <button type="submit" onClick={login}>Sign in</button>
                         </div>
                     </form>
-
-                        <h4> User Logged In: </h4>
-                        {user?.email}
-
-                         <button onClick={logout}> Sign Out </button>
                     </div>
             </div>
         </>

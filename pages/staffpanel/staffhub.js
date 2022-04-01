@@ -87,14 +87,14 @@ export default function StaffHub() {
                         <h1>Register New User</h1>
                         <div className="form-content">
                         <div className="input-field">
-                            <input type="email" placeholder="Email" autoComplete="nope" onChange={(event) => {setRegisterEmail(event.target.value)}}/>
+                            <input type="email" placeholder="Email" autoComplete="nope" onChange={(event) => {setRegisterEmail(event.target.value)}} required/>
                         </div>
                         <div className="input-field">
-                            <input type="password" placeholder="Password" autoComplete="new-password" onChange={(event) => {setRegisterPassword(event.target.value)}}/>
+                            <input type="password" placeholder="Password" autoComplete="new-password" onChange={(event) => {setRegisterPassword(event.target.value)}} required/>
                         </div>
                         </div>
                         <div className="action">
-                        <button type="button" onClick={register}>Register User</button>
+                        <button type="submit" onClick={register}>Register User</button>
                         </div>
                     </form>
 
