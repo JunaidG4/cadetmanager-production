@@ -30,6 +30,7 @@ export default function StaffLogin() {
       console.log(user);
     } catch (error) {
       console.log(error.message);
+      alert(error.message);
     }
   };
 
@@ -43,12 +44,14 @@ export default function StaffLogin() {
         <title> CMS | Staff Login</title>
       </Head>
       <div>
-        <div className="login-form p-12">
+        <div className="login-form">
           <form className="login">
             <h1 className=" text-lg">Staff Login Area</h1>
             <div className="form-content">
               <div className="input-field">
                 <input
+                  pattern=".+@rafac\.uk"
+                  title="Please provide only a RAFAC e-mail address"
                   type="email"
                   required
                   placeholder="Email"
@@ -72,6 +75,7 @@ export default function StaffLogin() {
             </div>
             <div className="action">
               <button
+                value="Send Request"
                 type="submit"
                 onClick={(e) => {
                   login(e);

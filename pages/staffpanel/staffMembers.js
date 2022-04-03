@@ -1,3 +1,6 @@
+/* eslint-disable react-hooks/rules-of-hooks */
+/* eslint-disable react/jsx-key */
+/* eslint-disable prettier/prettier */
 import Head from "next/dist/shared/lib/head";
 import {onSnapshot, query, orderBy,} from "firebase/firestore";
 import { useEffect, useState } from "react";
