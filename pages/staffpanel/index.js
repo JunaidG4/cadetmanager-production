@@ -1,6 +1,5 @@
 import { 
     signInWithEmailAndPassword,
-    createUserWithEmailAndPassword,
     onAuthStateChanged,
     signOut 
 } from "firebase/auth";
@@ -28,6 +27,7 @@ export default function StaffLogin() {
     const [signInEmail, setSignInEmail] = useState("")
     const [signInPassword, setSignInPassword] = useState("")
 
+
     const login = async () => {
         try {
             const user = await signInWithEmailAndPassword (
@@ -35,6 +35,7 @@ export default function StaffLogin() {
                 signInEmail,
                 signInPassword
             );
+            router.push('/staffpanel/staffhub')
             console.log(user);
         } catch (error) {
             console.log(error.message);
@@ -67,7 +68,7 @@ export default function StaffLogin() {
                         </div>
                         </div>
                         <div className="action">
-                        <button type="submit" onClick={login}>Sign in</button>
+                        <button type="button" onClick={login}>Sign in</button>
                         </div>
                     </form>
                     </div>

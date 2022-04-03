@@ -1,9 +1,9 @@
 import Head from "next/dist/shared/lib/head";
-import { collection, setDoc, addDoc, onSnapshot, doc } from "firebase/firestore";
+import { collection, onSnapshot} from "firebase/firestore";
 import { useEffect, useState } from "react";
-import { db, eventRef } from "../../firebase/firebaseInit";
+import { db} from "../../firebase/firebaseInit";
 import { useRouter } from "next/router";
-import { handleEvent } from "./staffpanelUtils";
+import { handleEvent, handleEventDelete, handleEventEdit } from "./staffpanelUtils";
 
   
   
@@ -48,6 +48,8 @@ import { handleEvent } from "./staffpanelUtils";
                           <h3>{event.eventDate} | {event.eventname}</h3>
                           <h4>Uniform: {event.uniform}</h4>
                           <h4>Event Status: {event.isLive}</h4>
+                          <button onClick={() => handleEventEdit(event.id)}>Edit</button>
+                          <button onClick={() => handleEventDelete(event.id)}>Delete</button>
                       </a>
                   </div>
               </div>

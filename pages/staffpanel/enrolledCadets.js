@@ -1,21 +1,29 @@
 import Head from "next/dist/shared/lib/head";
-import { collection, setDoc, addDoc, onSnapshot, doc } from "firebase/firestore";
+import {onSnapshot, query, orderBy,} from "firebase/firestore";
 import { useEffect, useState } from "react";
 import { db, colRef } from "../../firebase/firebaseInit";
 import { useRouter } from "next/router";
-import { handleCadet } from "./staffpanelUtils";
+import { handleCadet, handleCadetEdit, handleCadetDelete } from "./staffpanelUtils";
   
   export default function enrolledCadets() {
 
-    const [cadets, setCadets] = useState([{ forename: "Loading...", surname: "Loading...", rank: "Loading..." }]);
+    const [cadets, setCadets] = useState([{ 
+      forename: "Loading...", 
+      surname: "Loading...", 
+      rank: "Loading..." ,
+      enrolledDate: "Loading..."
+    }]);
   
-    useEffect(
-      () =>
-        onSnapshot(collection(db, "cadets"), (snapshot) =>
-          setCadets(snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id })))
-        ),
-      []
-    );
+    useEffect( () => {
+      const sortQuery = query(colRef, orderBy("surname", "asc"))
+
+      const unsub = onSnapshot(sortQuery, (snapshot) =>
+        setCadets(snapshot.docs.map((doc) => ({...doc.data(), id: doc.id })))
+        )
+
+        return unsub;
+    }, 
+    []);
 
     const router = useRouter();
 
@@ -39,8 +47,10 @@ import { handleCadet } from "./staffpanelUtils";
               <div className="cadetnames">
                   <div key={(cadet.id)}>
                       <a>
-                          <h3>{cadet.rank} {cadet.forename} {cadet.surname}</h3>
+                          <h3>{cadet.rank} {cadet.surname}, {cadet.forename}</h3>
                           <h4>Enrolled: {cadet.enrolledDate}</h4>
+                          <button onClick={() => handleCadetEdit(cadet.id)}>Edit</button>
+                          <button onClick={() => handleCadetDelete(cadet.id)}>Delete</button>
                       </a>
                   </div>
               </div>
