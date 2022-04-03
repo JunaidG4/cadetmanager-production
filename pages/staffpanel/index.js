@@ -28,7 +28,9 @@ export default function StaffLogin() {
     const [signInPassword, setSignInPassword] = useState("")
 
 
-    const login = async () => {
+    const login = async (e) => {
+        e.preventDefault();
+        console.log(e.target);
         try {
             const user = await signInWithEmailAndPassword (
                 auth,
@@ -56,7 +58,7 @@ export default function StaffLogin() {
             <title> CMS | Staff Login</title>
             </Head>
             <div>
-                <div className="login-form">
+                <div className="login-form p-12">
                     <form className="login">
                         <h1>Staff Login Area</h1>
                         <div className="form-content">
@@ -68,7 +70,9 @@ export default function StaffLogin() {
                         </div>
                         </div>
                         <div className="action">
-                        <button type="button" onClick={login}>Sign in</button>
+                        <button type="submit"  onClick={(e) => {
+
+                        login(e)}}>Sign in</button>
                         </div>
                     </form>
                     </div>
