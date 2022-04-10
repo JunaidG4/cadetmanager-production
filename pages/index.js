@@ -29,7 +29,7 @@ function Home() {
 
 
 
-  const {userData} = useContext(AuthContext);
+  
 
   const signOutHandle = async () => {
     await signOut(auth)
@@ -41,6 +41,7 @@ function Home() {
           <Head>
             <title> CMS | Landing Site</title>
           </Head>
+          <main>
           <div>
             <div className="welcomeTo">
               <h2 className={styles.Head}>Welcome to CMS</h2>
@@ -75,6 +76,7 @@ function Home() {
               </div>
             </div>
           </div>
+          </main>
         </>
 
     </authRoute>

@@ -1,3 +1,5 @@
+/* eslint-disable prettier/prettier */
+import { Toast } from 'bootstrap';
 import { signInWithEmailAndPassword, onAuthStateChanged, signOut } from 'firebase/auth';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
@@ -29,7 +31,9 @@ export default function StaffLogin() {
       router.push('/staffpanel/staffhub');
       console.log(user);
     } catch (error) {
+      
       console.log(error.message);
+      alert(error.message);
     }
   };
 
@@ -48,35 +52,14 @@ export default function StaffLogin() {
             <h1 className=" text-lg">Staff Login Area</h1>
             <div className="form-content">
               <div className="input-field">
-                <input
-                  type="email"
-                  required
-                  placeholder="Email"
-                  autoComplete="nope"
-                  onChange={(event) => {
-                    setSignInEmail(event.target.value);
-                  }}
-                />
+                <input type="email" required placeholder="Email" autoComplete="nope" onChange={(event) => {setSignInEmail(event.target.value);}} />
               </div>
               <div className="input-field">
-                <input
-                  type="password"
-                  required
-                  placeholder="Password"
-                  autoComplete="new-password"
-                  onChange={(event) => {
-                    setSignInPassword(event.target.value);
-                  }}
-                />
+                <input type="password" required placeholder="Password" autoComplete="new-password" onChange={(event) => {setSignInPassword(event.target.value);}} />
               </div>
             </div>
             <div className="action">
-              <button
-                type="submit"
-                onClick={(e) => {
-                  login(e);
-                }}
-              >
+              <button type="submit" onClick={(e) => {login(e);}}>
                 Sign in
               </button>
             </div>

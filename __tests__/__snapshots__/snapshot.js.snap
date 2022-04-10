@@ -1,0 +1,69 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders homepage unchanged 1`] = `
+<div>
+  <authroute>
+    <main>
+      <div>
+        <div
+          class="welcomeTo"
+        >
+          <h2
+            class="Head"
+          >
+            Welcome to CMS
+          </h2>
+          <div
+            class="welcomeContent"
+          >
+            <h3>
+              CMS is the cadet management system accessible by members of the RAFAC and any permanent HQ staff. It is tool for responsible use only. Any unauthorised entry strictly breaches the terms of use provided by the relevent ACP.
+            </h3>
+          </div>
+        </div>
+        <div
+          class="missionStatement"
+        >
+          <h2
+            class="Head"
+          >
+            Defining a Modern Squadron
+          </h2>
+          <div
+            class="welcomeContent"
+          >
+            <h3>
+              The Cadet Management System aims to equip the modern RAFAC squadron with the technologies to become more efficient, secure and professional.
+            </h3>
+          </div>
+        </div>
+        <div
+          class="quicknav"
+        >
+          <h2
+            class="Head"
+          >
+            Quick Navigation
+          </h2>
+          <div
+            class="welcomeContent"
+          >
+            <button
+              class="button-81qn"
+              type="button"
+            >
+              I'm a Cadet
+            </button>
+            <button
+              class="button-81qn"
+              type="button"
+            >
+              I'm Staff
+            </button>
+          </div>
+        </div>
+      </div>
+    </main>
+  </authroute>
+</div>
+`;

@@ -111,7 +111,7 @@ export default function StaffHub() {
             <h2 className="enrolled">Staff Members: {staffMem.length}</h2>
             <div className="action">
               <button className="button-81" type="button" onClick={handleStaffClick}>
-                View Events
+                View Staff
               </button>
             </div>
           </div>
